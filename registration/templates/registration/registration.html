@@ -1,0 +1,51 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+{% block content %}
+<h1>{{ title }}</h1>
+<form method="post" class="form-register">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button class="btn btn-outline-success" type="submit">Register</button>
+    <hr>
+    <p>Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
+</form>
+
+
+{% endblock %}
+
+
+{% block aside %}
+<div class="post">
+    <img src="{% static 'blog/images/python.png' %}" width="300" height="168" class="img-thumbhail mt-3">
+    <p>Почему Python такой популярный?🤨</p>
+    <a href="https://tproger.ru/articles/pochemu-python-takoj-populyarnyj-napisano-chelovekom/" target="_blank">
+        <button class="btn btn-info">Read full</button>
+    </a>
+</div>
+
+
+<div class="post">
+    <img src="{% static 'blog/images/golang.png' %}" width="300" height="150" class="img-thumbhail mt-5">
+    <p>Что делает Go таким необычным?</p>
+    <a href="https://tproger.ru/translations/chto-delaet-go-takim-neobychnym/" target="_blank">
+        <button class="btn btn-info">Read full</button>
+    </a>
+</div>
+
+
+<div class="post">
+    <img src="{% static 'blog/images/stackoverflow.jpeg' %}" class="img-thumbhail mt-5">
+    <p>Stack Overflow провёл опрос о любимых языках программирования.</p>
+    <a href="https://tproger.ru/articles/stack-overflow-provyol-opros-o-lyubimyh-yazykah-programmirovaniya-vyigral-rust/"
+        target="_blank">
+        <button class="btn btn-info">Read full</button>
+    </a>
+</div>
+{% endblock %}
