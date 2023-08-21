@@ -9,23 +9,26 @@
 
 {% block content %}
 {% for post in posts %}
-<div class="alert alert-primary">
+<div class="alert alert-light">
     <h1>{{ post.title }}</h1>
     <p>{{ post.text }}</p>
-    {% if post.author == 'Arsenij' %}
-    <p><b>Author is YOU</b></p>
-    {% else %}
-    <p><b>Author is {{ post.author }}</b></p>
-    <span class="text-muted">Posted {{ post.date|date:"j F Y" }} at {{ post.time|date:"H:i" }}</span>
+    <div class="row">
+        <div>
+            <img src="{{ post.author.profile.img.url }}" alt="{{ post.author }}" class="user_images">
+        </div>
+        <div class="mt-1">
+            <p>Author is <mark>{{ post.author }}</mark></p>
+            <span class="text-muted">Posted {{ post.date|date:"j F Y" }} at {{ post.time|date:"H:i" }}</span>
+        </div>
+    </div>
 </div>
-{% endif %}
 {% endfor %}
 {% endblock %}
 
 
 {% block aside %}
 
-<div class="post">
+<div class="post mb-3">
     <img src="{% static 'blog/images/python.png' %}" width="300" height="168" class="img-thumbhail mt-3">
     <p>Почему Python такой популярный?🤨</p>
     <a href="https://tproger.ru/articles/pochemu-python-takoj-populyarnyj-napisano-chelovekom/" target="_blank">
@@ -34,7 +37,7 @@
 </div>
 
 
-<div class="post">
+<div class="post mb-3">
     <img src="{% static 'blog/images/golang.png' %}" width="300" height="150" class="img-thumbhail mt-5">
     <p>Что делает Go таким необычным?</p>
     <a href="https://tproger.ru/translations/chto-delaet-go-takim-neobychnym/" target="_blank">
@@ -43,7 +46,7 @@
 </div>
 
 
-<div class="post">
+<div class="post mb-3">
     <img src="{% static 'blog/images/stackoverflow.jpeg' %}" class="img-thumbhail mt-5">
     <p>Stack Overflow провёл опрос о любимых языках программирования.</p>
     <a href="https://tproger.ru/articles/stack-overflow-provyol-opros-o-lyubimyh-yazykah-programmirovaniya-vyigral-rust/"

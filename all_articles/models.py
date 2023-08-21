@@ -13,7 +13,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, verbose_name='Author', on_delete=models.CASCADE)
 
-    # delete
+    # after finally result
     views = models.IntegerField('Number of views', default=1)
     likes = models.IntegerField('Number of likes', default=0)
 

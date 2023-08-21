@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Profile, CHOICES
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -55,3 +56,42 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1',
                   'password2']
+
+
+class UserUpdateForm(forms.ModelForm):
+    username = forms.CharField(
+        label='Username',
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Username'
+        }),
+        help_text="You can't type - (@, /, _), etc.",
+        max_length=15,
+        min_length=5
+    )
+
+    email = forms.EmailField(
+        label='Email address',
+        required=True,
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Email'
+        }),
+    )
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+
+class ProfileImageForm(forms.ModelForm):
+    img = forms.ImageField(
+        label='',
+        required=False,
+        widget=forms.FileInput,
+    )
+
+    class Meta:
+        model = Profile
+        fields = ['img', 'gender', 'agreement']

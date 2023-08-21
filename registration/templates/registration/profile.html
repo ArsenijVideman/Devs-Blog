@@ -2,21 +2,37 @@
 {% load static %}
 
 
-{% block title %}
-User Account
-{% endblock %}
+
 
 
 {% block content %}
-<h1>User Account</h1>
-<p>{{ user.username }}</p>
-<p>{{ user.email }}</p>
 
+<form method="post" enctype="multipart/form-data" class="form-register mt-4">
+    <h1 class="text-info">User Account</h1>
+    <div class="d-flex text-body-secondary p-3">
+        <img class="bd-placeholder-img flex-shrink-0 me-2 rounded " width="64" height="64"
+            src="{{ user.profile.img.url }}">
+
+        <p class="pb-3 ml-4 mb-0 small lh-sm border-bottom">
+            <strong class="d-block text-gray-dark">@{{ user.username }}</strong>
+            {% if user.email %}
+            <strong class="d-block text-gray-dark">Email: {{ user.email }}</strong>
+            {% endif %}
+        </p>
+    </div>
+    <h3>Change data about User</h3>
+    {% csrf_token %}
+    {{ update_user_form.as_p }}
+    Image profile: <a href="{{ user.profile.img.url }}">Photo</a><br>
+    Change:
+    {{ profile_form.as_p }}
+    <button class="btn btn-outline-success" type="submit">Update</button>
+</form>
 {% endblock %}
 
 
 {% block aside %}
-<div class="post">
+<div class="post mb-3">
     <img src="{% static 'blog/images/python.png' %}" width="300" height="168" class="img-thumbhail mt-3">
     <p>Почему Python такой популярный?🤨</p>
     <a href="https://tproger.ru/articles/pochemu-python-takoj-populyarnyj-napisano-chelovekom/" target="_blank">
@@ -25,7 +41,7 @@ User Account
 </div>
 
 
-<div class="post">
+<div class="post mb-3">
     <img src="{% static 'blog/images/golang.png' %}" width="300" height="150" class="img-thumbhail mt-5">
     <p>Что делает Go таким необычным?</p>
     <a href="https://tproger.ru/translations/chto-delaet-go-takim-neobychnym/" target="_blank">
@@ -34,7 +50,7 @@ User Account
 </div>
 
 
-<div class="post">
+<div class="post mb-3">
     <img src="{% static 'blog/images/stackoverflow.jpeg' %}" class="img-thumbhail mt-5">
     <p>Stack Overflow провёл опрос о любимых языках программирования.</p>
     <a href="https://tproger.ru/articles/stack-overflow-provyol-opros-o-lyubimyh-yazykah-programmirovaniya-vyigral-rust/"
