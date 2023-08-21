@@ -4,3 +4,6 @@
 2. also i deleted the "my posts" section for a while i decided to deal with it later
 
 ### that's all for now
+
+
+`P.S I am also thinking of making a telegram bot for this blog in golang`
